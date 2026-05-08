@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>HOO's Dino Run</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-wrapper">
+    <header class="title-panel">
+      <p class="title-main">🦖 HOO's DINO RUN</p>
+      <div class="title-controls">
+        <label class="ctrl">
+          <span>난이도</span>
+          <select id="difficultySelect">
+            <option value="easy">EASY</option>
+            <option value="normal" selected>NORMAL</option>
+            <option value="hard">HARD</option>
+          </select>
+        </label>
+        <label class="ctrl ctrl-checkbox">
+          <input type="checkbox" id="soundToggle" checked />
+          <span>🔊 SOUND</span>
+        </label>
+      </div>
+    </header>
+
+    <p class="best-record">🏆 BEST <span id="bestScore">0</span></p>
+
+    <section class="hud">
+      <div class="hud-left">
+        <div class="portrait-box" id="portraitBox" aria-hidden="true"></div>
+        <div>
+          <p class="name">HOO</p>
+          <p class="hearts" id="hearts">❤ ❤ ❤ ❤ ❤</p>
+          <div class="health-shell" aria-label="health">
+            <div class="health-fill" id="healthFill"></div>
+          </div>
+          <p class="egg-count">🥚 <span id="eggCount">0/0</span></p>
+        </div>
+      </div>
+
+      <div class="hud-center">
+        <p class="label">TIME</p>
+        <p class="value" id="timer">120</p>
+        <p class="stage">STAGE <span id="stageText">1</span> / 3</p>
+        <div class="progress-shell" aria-label="egg progress">
+          <div class="progress-fill" id="eggProgress"></div>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <p class="label">SCORE</p>
+        <p class="value" id="score">0000000</p>
+        <canvas id="miniMap" class="minimap" width="220" height="116" aria-label="mini map"></canvas>
+      </div>
+    </section>
+
+    <canvas id="gameCanvas" width="960" height="540" tabindex="0"></canvas>
+
+    <p class="message" id="message" aria-live="polite">난이도를 고른 뒤 시작 버튼을 눌러보세요.</p>
+    <p class="help">⬅ ➡ 이동 · SPACE 점프 (길게 누르면 더 높이) · P 일시정지</p>
+
+    <div class="buttons">
+      <button id="startBtn" type="button">▶ 시작 / 다음 스테이지</button>
+      <button id="pauseBtn" type="button">⏸ 일시정지</button>
+      <button id="restartBtn" type="button">↻ 재시작</button>
+    </div>
+
+    <!-- Mobile touch controls -->
+    <div class="touch-controls" id="touchControls" aria-hidden="true">
+      <div class="touch-pad">
+        <button class="touch-btn" data-key="left" type="button">◀</button>
+        <button class="touch-btn" data-key="right" type="button">▶</button>
+      </div>
+      <button class="touch-btn touch-jump" data-key="jump" type="button">JUMP</button>
+    </div>
+
+    <section id="resultPanel" class="result hidden" aria-live="polite">
+      <h2 id="resultTitle">결과</h2>
+      <p>STAGE: <span id="resultStage">1</span></p>
+      <p>남은 시간: <span id="resultTime">0</span>s</p>
+      <p>점수: <span id="resultScore">0</span></p>
+      <p>난이도: <span id="resultDifficulty">normal</span></p>
+      <div class="result-actions">
+        <button id="resultRestartBtn" type="button">이 스테이지 다시</button>
+        <button id="resultNextBtn" type="button">다음 스테이지 ▶</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
